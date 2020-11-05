@@ -39,10 +39,33 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+    this.stomach = [];
+    this.name = name;
+    this.age = age;
+    
+    this.items = 0;
+}
+Person.prototype.eat = function()
+{
+    if (this.items <= 10)
+    {
+      return this.stomach;
+    }
+    
+}
+Person.prototype.poop = function ()
+{
+      if(this.items === 0)
+      {
+        return this.stomach
+      }
 }
 
+Person.prototype.toString = function ()
+{
+  return `${this.name}, ${this.age}`;
+}
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -57,9 +80,19 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
+function Car(model, milesPerGallon) {
 
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
 }
+Car.prototype.fill = function (gallons)
+{
+  this.tank = this.tank + gallons;
+  return this.tank;
+}
+
 
 /*
   TASK 3
@@ -68,18 +101,24 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+      Person.call(this, name, age);
+      this.favoriteToy = favoriteToy;
 }
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`
+}
+
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Global/Window Binding: refers to the container accessed which is the browser or widow.
+  2. Implicit Binding: Uses the DOT operator.
+  3. Explicit Binding: Uses .call() or .apply(), rebinding a new object onto another.
+  4. This with New: This with a new constructor function.
 */
 
 
