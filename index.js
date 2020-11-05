@@ -40,13 +40,32 @@ Airplane.prototype.land = function () {
 */
 
 function Person(name, age) {
+    this.stomach = [];
     this.name = name;
     this.age = age;
-    let stomach = [];
+    
+    this.items = 0;
 }
-Person.prototype.eat(someFood)
-{}
+Person.prototype.eat = function()
+{
+    if (this.items <= 10)
+    {
+      return this.stomach;
+    }
+    
+}
+Person.prototype.poop = function ()
+{
+      if(this.items === 0)
+      {
+        return this.stomach
+      }
+}
 
+Person.prototype.toString = function ()
+{
+  return `${this.name}, ${this.age}`;
+}
 /*
   TASK 2
     - Write a Car constructor that initializes `model` and `milesPerGallon` from arguments.
@@ -83,17 +102,23 @@ Car.prototype.fill = function (gallons)
         + Should return a string "Playing with x", x being the favorite toy.
 */
 function Baby(name, age, favoriteToy) {
-
+      Person.call(this, name, age);
+      this.favoriteToy = favoriteToy;
 }
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`
+}
+
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Global/Window Binding: refers to the container accessed which is the browser or widow.
+  2. Implicit Binding: Uses the DOT operator.
+  3. Explicit Binding: Uses .call() or .apply(), rebinding a new object onto another.
+  4. This with New: This with a new constructor function.
 */
 
 
